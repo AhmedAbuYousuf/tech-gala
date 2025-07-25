@@ -17,30 +17,30 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 240 20% 15%;
 
-    --primary: 259 94% 51%;
+    --primary: 258 87% 66%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 259 100% 70%;
+    --primary-glow: 271 48% 87%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 20% 15%;
+    --secondary: 226 19% 35%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 240 5% 96%;
     --muted-foreground: 240 5% 45%;
 
-    --accent: 25 95% 53%;
+    --accent: 202 77% 56%;
     --accent-foreground: 0 0% 100%;
-    --accent-glow: 25 100% 70%;
+    --accent-glow: 202 77% 70%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 240 10% 90%;
     --input: 240 10% 90%;
-    --ring: 259 94% 51%;
+    --ring: 258 87% 66%;
 
     /* Event management specific colors */
-    --event-primary: 259 94% 51%;
-    --event-secondary: 280 100% 70%;
+    --event-primary: 258 87% 66%;
+    --event-secondary: 226 19% 35%;
     --success: 120 100% 40%;
     --warning: 45 100% 60%;
 
