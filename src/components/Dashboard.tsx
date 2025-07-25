@@ -12,11 +12,16 @@ import {
   Plus,
   BarChart3,
   Settings,
-  Bell
+  Bell,
+  QrCode,
+  User
 } from "lucide-react";
 import { EventCard } from "./EventCard";
 import { EventForm } from "./EventForm";
 import { CalendarView } from "./CalendarView";
+import { QRScanner } from "./QRScanner";
+import { UserProfile } from "./UserProfile";
+import { CalendarSync } from "./CalendarSync";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -74,8 +79,9 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps) => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync'>('dashboard');
   const [events, setEvents] = useState(mockEvents);
+  const [selectedEventForSync, setSelectedEventForSync] = useState<any>(null);
 
   const handleCreateEvent = (eventData: any) => {
     const newEvent = {
@@ -140,6 +146,22 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
           </div>
           
           <div className="flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setCurrentView('profile')}
+              title="User Profile"
+            >
+              <User className="w-5 h-5" />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setCurrentView('qr-scanner')}
+              title="QR Scanner"
+            >
+              <QrCode className="w-5 h-5" />
+            </Button>
             <Button variant="ghost" size="icon">
               <Bell className="w-5 h-5" />
             </Button>
@@ -197,8 +219,7 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
                     Manage everything from creation to analytics in one place
                   </p>
                   <Button 
-                    variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-primary"
+                    variant="white"
                     onClick={() => setCurrentView('create-event')}
                   >
                     Get Started
@@ -309,6 +330,30 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
               </CardContent>
             </Card>
           </div>
+        )}
+
+        {currentView === 'qr-scanner' && (
+          <QRScanner 
+            eventId="1" 
+            eventTitle="Tech Conference 2024"
+            onClose={() => setCurrentView('dashboard')}
+          />
+        )}
+
+        {currentView === 'profile' && (
+          <UserProfile 
+            onClose={() => setCurrentView('dashboard')}
+          />
+        )}
+
+        {currentView === 'calendar-sync' && selectedEventForSync && (
+          <CalendarSync 
+            event={selectedEventForSync}
+            onClose={() => {
+              setCurrentView('dashboard');
+              setSelectedEventForSync(null);
+            }}
+          />
         )}
       </div>
     </div>
