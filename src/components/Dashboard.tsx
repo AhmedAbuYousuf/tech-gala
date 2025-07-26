@@ -22,6 +22,7 @@ import { CalendarView } from "./CalendarView";
 import { QRScanner } from "./QRScanner";
 import { UserProfile } from "./UserProfile";
 import { CalendarSync } from "./CalendarSync";
+import { ChatWidget } from "./ChatWidget";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -356,6 +357,9 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
           />
         )}
       </div>
+      
+      {/* Chat Widget - Available on all views */}
+      <ChatWidget />
     </div>
   );
 };
