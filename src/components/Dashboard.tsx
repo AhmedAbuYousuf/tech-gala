@@ -14,7 +14,8 @@ import {
   Settings,
   Bell,
   QrCode,
-  User
+  User,
+  Video
 } from "lucide-react";
 import { EventCard } from "./EventCard";
 import { EventForm } from "./EventForm";
@@ -23,6 +24,7 @@ import { QRScanner } from "./QRScanner";
 import { UserProfile } from "./UserProfile";
 import { CalendarSync } from "./CalendarSync";
 import { ChatWidget } from "./ChatWidget";
+import { VideoIntegration } from "./VideoIntegration";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -80,7 +82,7 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps) => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration'>('dashboard');
   const [events, setEvents] = useState(mockEvents);
   const [selectedEventForSync, setSelectedEventForSync] = useState<any>(null);
 
@@ -154,6 +156,14 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
               title="User Profile"
             >
               <User className="w-5 h-5" />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setCurrentView('video-integration')}
+              title="Video Integration"
+            >
+              <Video className="w-5 h-5" />
             </Button>
             <Button 
               variant="ghost" 
@@ -354,6 +364,12 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
               setCurrentView('dashboard');
               setSelectedEventForSync(null);
             }}
+          />
+        )}
+
+        {currentView === 'video-integration' && (
+          <VideoIntegration 
+            onClose={() => setCurrentView('dashboard')}
           />
         )}
       </div>
