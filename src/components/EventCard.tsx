@@ -21,9 +21,10 @@ interface EventCardProps {
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
   onViewAnalytics?: (id: string) => void;
+  onViewTicketing?: (id: string) => void;
 }
 
-export const EventCard = ({ event, onEdit, onDelete, onViewAnalytics }: EventCardProps) => {
+export const EventCard = ({ event, onEdit, onDelete, onViewAnalytics, onViewTicketing }: EventCardProps) => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'published': return 'bg-success';
@@ -124,6 +125,16 @@ export const EventCard = ({ event, onEdit, onDelete, onViewAnalytics }: EventCar
             >
               Analytics
             </Button>
+            {onViewTicketing && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => onViewTicketing(event.id)}
+                className="flex-1"
+              >
+                Tickets
+              </Button>
+            )}
             <Button 
               variant="destructive" 
               size="sm" 

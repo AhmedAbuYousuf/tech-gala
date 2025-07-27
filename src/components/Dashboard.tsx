@@ -25,6 +25,7 @@ import { UserProfile } from "./UserProfile";
 import { CalendarSync } from "./CalendarSync";
 import { ChatWidget } from "./ChatWidget";
 import { VideoIntegration } from "./VideoIntegration";
+import { TicketingDashboard } from "./TicketingDashboard";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -82,9 +83,10 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps) => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration' | 'ticketing'>('dashboard');
   const [events, setEvents] = useState(mockEvents);
   const [selectedEventForSync, setSelectedEventForSync] = useState<any>(null);
+  const [selectedEventForTicketing, setSelectedEventForTicketing] = useState<any>(null);
 
   const handleCreateEvent = (eventData: any) => {
     const newEvent = {
@@ -109,6 +111,14 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
   const handleViewAnalytics = (id: string) => {
     console.log('View analytics for event:', id);
     setCurrentView('analytics');
+  };
+
+  const handleViewTicketing = (id: string) => {
+    const event = events.find(e => e.id === id);
+    if (event) {
+      setSelectedEventForTicketing(event);
+      setCurrentView('ticketing');
+    }
   };
 
   if (currentView === 'create-event') {
@@ -316,6 +326,7 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
                     onEdit={handleEditEvent}
                     onDelete={handleDeleteEvent}
                     onViewAnalytics={handleViewAnalytics}
+                    onViewTicketing={handleViewTicketing}
                   />
                 ))}
               </div>
@@ -370,6 +381,20 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
         {currentView === 'video-integration' && (
           <VideoIntegration 
             onClose={() => setCurrentView('dashboard')}
+          />
+        )}
+
+        {currentView === 'ticketing' && selectedEventForTicketing && (
+          <TicketingDashboard
+            eventId={selectedEventForTicketing.id}
+            eventTitle={selectedEventForTicketing.title}
+            eventDate={selectedEventForTicketing.date}
+            maxAttendees={selectedEventForTicketing.maxAttendees}
+            currentAttendees={selectedEventForTicketing.attendees}
+            onClose={() => {
+              setCurrentView('dashboard');
+              setSelectedEventForTicketing(null);
+            }}
           />
         )}
       </div>
