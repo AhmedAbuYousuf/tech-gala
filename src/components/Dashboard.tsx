@@ -26,6 +26,7 @@ import { CalendarSync } from "./CalendarSync";
 import { ChatWidget } from "./ChatWidget";
 import { VideoIntegration } from "./VideoIntegration";
 import { TicketingDashboard } from "./TicketingDashboard";
+import { AnalyticsDashboard } from "./AnalyticsDashboard";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -339,19 +340,7 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
         )}
 
         {currentView === 'analytics' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-foreground">Analytics Dashboard</h2>
-            <Card className="shadow-card border-0 bg-gradient-card">
-              <CardContent className="p-8 text-center">
-                <BarChart3 className="w-16 h-16 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Advanced Analytics</h3>
-                <p className="text-muted-foreground mb-4">
-                  Track ticket sales, attendee demographics, and event performance
-                </p>
-                <Button variant="hero">Coming Soon</Button>
-              </CardContent>
-            </Card>
-          </div>
+          <AnalyticsDashboard onClose={() => setCurrentView('dashboard')} />
         )}
 
         {currentView === 'qr-scanner' && (
