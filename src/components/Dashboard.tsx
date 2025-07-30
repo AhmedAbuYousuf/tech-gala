@@ -28,6 +28,7 @@ import { VideoIntegration } from "./VideoIntegration";
 import { TicketingDashboard } from "./TicketingDashboard";
 import { AnalyticsDashboard } from "./AnalyticsDashboard";
 import { InvoicingDashboard } from "./InvoicingDashboard";
+import { MarketingDashboard } from "./MarketingDashboard";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -85,7 +86,7 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps) => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration' | 'ticketing' | 'invoicing'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration' | 'ticketing' | 'invoicing' | 'marketing'>('dashboard');
   const [events, setEvents] = useState(mockEvents);
   const [selectedEventForSync, setSelectedEventForSync] = useState<any>(null);
   const [selectedEventForTicketing, setSelectedEventForTicketing] = useState<any>(null);
@@ -229,6 +230,12 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
             onClick={() => setCurrentView('invoicing')}
           >
             Invoicing
+          </Button>
+          <Button 
+            variant={currentView === 'marketing' ? 'default' : 'ghost'}
+            onClick={() => setCurrentView('marketing')}
+          >
+            Marketing
           </Button>
         </div>
 
@@ -396,6 +403,10 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
 
         {currentView === 'invoicing' && (
           <InvoicingDashboard onClose={() => setCurrentView('dashboard')} />
+        )}
+
+        {currentView === 'marketing' && (
+          <MarketingDashboard />
         )}
       </div>
       
