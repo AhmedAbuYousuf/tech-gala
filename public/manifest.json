@@ -1,0 +1,85 @@
+{
+  "name": "EventForge - Professional Event Management",
+  "short_name": "EventForge",
+  "description": "Comprehensive event management platform for creating, managing, and analyzing events",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#8B5CF6",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "events"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-256.png", 
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/icon-384.png",
+      "type": "image/png", 
+      "sizes": "384x384"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EventForge Dashboard - Desktop View"
+    },
+    {
+      "src": "/screenshot-narrow.png", 
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "EventForge Dashboard - Mobile View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create Event",
+      "short_name": "New Event",
+      "description": "Create a new event quickly",
+      "url": "/?action=create-event",
+      "icons": [
+        {
+          "src": "/shortcut-create.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "short_name": "Analytics", 
+      "description": "View event analytics",
+      "url": "/?view=analytics",
+      "icons": [
+        {
+          "src": "/shortcut-analytics.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "scope": "/",
+  "prefer_related_applications": false
+}

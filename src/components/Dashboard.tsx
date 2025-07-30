@@ -29,6 +29,8 @@ import { TicketingDashboard } from "./TicketingDashboard";
 import { AnalyticsDashboard } from "./AnalyticsDashboard";
 import { InvoicingDashboard } from "./InvoicingDashboard";
 import { MarketingDashboard } from "./MarketingDashboard";
+import { PaymentDashboard } from "./PaymentDashboard";
+import { AutomationDashboard } from "./AutomationDashboard";
 import heroImage from "@/assets/hero-event-management.jpg";
 
 // Mock data for demonstration
@@ -86,7 +88,7 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps) => {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration' | 'ticketing' | 'invoicing' | 'marketing'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'create-event' | 'calendar' | 'analytics' | 'qr-scanner' | 'profile' | 'calendar-sync' | 'video-integration' | 'ticketing' | 'invoicing' | 'marketing' | 'payments' | 'automation'>('dashboard');
   const [events, setEvents] = useState(mockEvents);
   const [selectedEventForSync, setSelectedEventForSync] = useState<any>(null);
   const [selectedEventForTicketing, setSelectedEventForTicketing] = useState<any>(null);
@@ -236,6 +238,18 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
             onClick={() => setCurrentView('marketing')}
           >
             Marketing
+          </Button>
+          <Button 
+            variant={currentView === 'payments' ? 'default' : 'ghost'}
+            onClick={() => setCurrentView('payments')}
+          >
+            Payments
+          </Button>
+          <Button 
+            variant={currentView === 'automation' ? 'default' : 'ghost'}
+            onClick={() => setCurrentView('automation')}
+          >
+            Automation
           </Button>
         </div>
 
@@ -407,6 +421,14 @@ export const Dashboard = ({ organizerName = "Event Organizer" }: DashboardProps)
 
         {currentView === 'marketing' && (
           <MarketingDashboard />
+        )}
+
+        {currentView === 'payments' && (
+          <PaymentDashboard />
+        )}
+
+        {currentView === 'automation' && (
+          <AutomationDashboard />
         )}
       </div>
       
